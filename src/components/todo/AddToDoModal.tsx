@@ -4,18 +4,20 @@ import { Button } from "../ui/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription,  DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { useDispatch } from "react-redux";
 import { addToDo } from "@/redux/features/todoSlice";
+import { useAppDispatch } from "@/redux/features/hook";
 
 
 const AddToDoModal = () => {
   const [task,setTask]=useState('')
   const[description,setDescription]=useState('')  
-  const dispatch=useDispatch()
+  const dispatch=useAppDispatch()
   const onSubmit=(e:FormEvent)=>{
     e.preventDefault()
 
+    const ranDomString=Math.random().toString(36).substring(2,7)
     const taskDetails={
+      id:ranDomString,
       title:task,
       description:description,
     }
